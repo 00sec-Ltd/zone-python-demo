@@ -257,7 +257,7 @@ body {
   font-weight: 400;
   color: #272f60;
   max-width: 150px;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 .zoen .zoen_form {
   width: 100%;
