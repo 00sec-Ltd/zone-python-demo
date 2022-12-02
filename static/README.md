@@ -4,7 +4,7 @@
 
 ```html
 <script src="https://static.0.zone/plugin-base.js"></script>
-<script src="./zoen.js"></script>
+<script src="./zone.js"></script>
 <link rel="stylesheet" type="text/css" href="./index.css" />
 ```
 
@@ -12,11 +12,11 @@
 
 ```js
 let site = new Zone({
-      api_pash:'http://192.168.1.104:8001/api',
+      base_api_path:'/api',
       company:'北京零零信安科技有限公司',
       conainer:document.getElementById('app')
 });
-// api_pash URL
+// base_api_path URL
 // company 认证公司
 // conainer 是需要载入内容的dom容器
 site.init()
@@ -30,7 +30,7 @@ site.init()
   <head>
     <meta charset="UTF-8" />
     <script src="https://static.0.zone/plugin-base.js"></script>
-    <script src="./zoen.js"></script>
+    <script src="./zone.js"></script>
     <link rel="stylesheet" type="text/css" href="./index.css" />
     <style type="text/css">
       /* 全局样式配置 */
@@ -48,7 +48,7 @@ site.init()
   </body>
   <script>
     let site = new Zone({
-      api_pash:'http://192.168.1.104:8001/api',
+      base_api_path:'/api',
       company:'北京零零信安科技有限公司',
       conainer:document.getElementById('app')
     });
