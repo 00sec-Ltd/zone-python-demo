@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <script src="https://static.0.zone/plugin-base.js"></script>
+    <script src="./zoen.js"></script>
     <link rel="stylesheet" type="text/css" href="./index.css" />
     <style type="text/css">
       /* 全局样式配置 */
@@ -19,7 +20,11 @@
     </div>
   </body>
   <script>
-    let site = new Znen('http://192.168.1.104:8001/api/','北京零零信安科技有限公司',document.getElementById('app'));
+    let site = new Zone({
+      api_pash:'http://192.168.1.104:8001/api',
+      company:'北京零零信安科技有限公司',
+      conainer:document.getElementById('app')
+    });
     site.init()
   </script>
 </html>

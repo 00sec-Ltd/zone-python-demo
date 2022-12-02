@@ -11,10 +11,14 @@
 - 使用方法
 
 ```js
-let site = new Znen('http://xxx.xxx.x.xx', '北京零零信安科技有限公司', document.getElementById('app'))
-// 第一个参数是 URL
-// 第二个参数 认证公司
-// 第三个参数是需要载入内容的dom容器
+let site = new Zone({
+      api_pash:'http://192.168.1.104:8001/api',
+      company:'北京零零信安科技有限公司',
+      conainer:document.getElementById('app')
+});
+// api_pash URL
+// company 认证公司
+// conainer 是需要载入内容的dom容器
 site.init()
 ```
 
@@ -29,7 +33,7 @@ site.init()
     <script src="./zoen.js"></script>
     <link rel="stylesheet" type="text/css" href="./index.css" />
     <style type="text/css">
-      /* 全局样式 */
+      /* 全局样式配置 */
       body {
         --color-bg: #d33d16;
         --color-text: #fff;
@@ -37,11 +41,19 @@ site.init()
     </style>
   </head>
   <body>
-    <div id="app"></div>
+   
+    <div id="app">
+     
+    </div>
   </body>
   <script>
-    let site = new Znen('http://xxx.xxx.x.xx', '北京零零信安科技有限公司', document.getElementById('app'))
+    let site = new Zone({
+      api_pash:'http://192.168.1.104:8001/api',
+      company:'北京零零信安科技有限公司',
+      conainer:document.getElementById('app')
+    });
     site.init()
   </script>
 </html>
+
 ```
