@@ -320,18 +320,24 @@ body {
   margin: 0 5px;
 }
 .abnormal {
-  width: 239px;
+  width: 500px;
   margin: 50px auto;
 }
 .abnormal h4 {
+  /* text-align: center; */
   margin-bottom: 0;
-  font-size: 29px;
-  color: #272f60;
+  font-size: 36px;
+font-family: Source Han Sans CN-Regular, Source Han Sans CN;
+font-weight: 400;
+color: #3D3D3D;
 }
 .abnormal h5 {
+  /* text-align: center; */
   margin: 10px 0;
   font-size: 14px;
-  color: #272f60;
+font-family: Source Han Sans CN-Regular, Source Han Sans CN;
+font-weight: 400;
+color: #3D3D3D;
 }
 
 .load {
