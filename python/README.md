@@ -186,7 +186,7 @@ def data():
 
 ##### 2.3.1 获取导出历史
 
-- 请求路径 : {api_base_pat}/export
+- 请求路径 : {api_base_path}/export
 
 - 请求方法 : GET
 
@@ -220,7 +220,7 @@ def data():
 
 ##### 2.3.2 导出 csv 文件
 
-- 请求路径 : {api_base_pat}/export
+- 请求路径 : {api_base_path}/export
 
 - 请求方法 : POST
 
@@ -244,7 +244,7 @@ def data():
 
 ##### 2.3.3 删除导出历史
 
-- 请求路径 : {api_base_pat}/export
+- 请求路径 : {api_base_path}/export
 
 - 请求方法 : DELETE
 
