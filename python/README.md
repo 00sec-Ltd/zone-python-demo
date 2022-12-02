@@ -2,7 +2,7 @@
 
 1. 前往 https://0.zone/dataService 提交认证企业
 2. 企业认证成功后，前往 https://0.zone/applyParticulars?type=site 获取 API KEY
-3. 定义 api 视图
+3. 自定义 api 视图（根据 web 框架不同，自行定义视图，以下为 flask 示例）
 
 ```
 # 配置类
@@ -27,7 +27,7 @@ class Main:
             response = requests.post(url=request_url, json=data, timeout=10)
         except Exception as e:
             raise e
-        
+
         return json.loads(response.text)
 
     def getExportData(self, data: dict, request_type: int=0):
@@ -77,45 +77,51 @@ def data():
         key=Config.key # 0.zone key
     )
     try:
-        data = Main().getData(request_data, request_type=1)      
+        data = Main().getData(request_data, request_type=1)
     except:
         return jsonify(dict(code=1, message="获取数据失败"))
-        
+
 	 # 返回 json 格式的数据
     return jsonify(data)
 
 ```
 
-### 2. 接口说明
+### 2. 自定义接口说明
 
-##### 2.1 数据接口
+前台 js 初始化后，会自动请求这些接口，请提前定义好。**api_base_path** 是您的 url 前缀，需与前台约定一致，下同。
 
-- Url :  /data
+#### 2.1 数据接口
 
-- Method : POST
+- 请求路径: {api_base_path}/data
 
-- Request
+- 请求方法: POST
 
-  |   参数名   |  类型  |                  说明                  |
-  | :--------: | :----: | :------------------------------------: |
-  |   title    | string |                搜索条件                |
-  | title_type | string | 搜索类型(site: 信息系统  domain: 域名) |
-  |  company   | string |                认证公司                |
-  |    page    |  int   |                 当前页                 |
-  |  pagesize  |  int   |                 页大小                 |
-  |    key     | string |               0.zone key               |
+- 请求格式: application/x-www-form-urlencoded
 
-- Response
+- 返回格式: json
+
+- 请求体：
+
+  |   参数名   |  类型  |                 说明                  |
+  | :--------: | :----: | :-----------------------------------: |
+  |   title    | string |               搜索条件                |
+  | title_type | string | 搜索类型(site: 信息系统 domain: 域名) |
+  |  company   | string |               认证公司                |
+  |    page    |  int   |                当前页                 |
+  |  pagesize  |  int   |                页大小                 |
+  |    key     | string |              0.zone key               |
+
+- 响应
 
   请前往 https://0.zone/applyParticulars?type=site 查看信息系统返回参数说明
 
-  域名类型 返回参数说明
+  域名类型返回参数说明
 
-  | 参数名  |  类型  |        说明         |
-  | :-----: | :----: | :-----------------: |
-  |  code   |  int   | 状态码  0成功 1失败 |
-  | message | string |      状态信息       |
-  |  data   |  dict  |      返回数据       |
+  | 参数名  |  类型  |         说明         |
+  | :-----: | :----: | :------------------: |
+  |  code   |  int   | 状态码 0 成功 1 失败 |
+  | message | string |       状态信息       |
+  |  data   |  dict  |       返回数据       |
 
   ```
   data 数据说明
@@ -157,15 +163,17 @@ def data():
    }
   ```
 
+#### 2.2 聚合数据接口
 
+- 请求路径: {api_base_path}/aggs
 
-##### 2.2 聚合数据接口
+- 请求方法: POST
 
-- Url : /aggs
+- 请求格式: application/x-www-form-urlencoded
 
-- Method : POST
+- 返回格式: json
 
-- Request
+- 请求体:
 
   |   参数名   |  类型  |    说明    |
   | :--------: | :----: | :--------: |
@@ -174,25 +182,27 @@ def data():
   |  company   | string |  认证公司  |
   |    key     | string | 0.zone key |
 
-##### 2.3 导出相关接口
+#### 2.3 导出相关接口
 
-- Url : /export
+##### 2.3.1 获取导出历史
 
-- Method : GET  # 获取导出历史
+- 请求路径 : {api_base_pat}/export
 
-- Request
+- 请求方法 : GET
+
+- 请求体:
 
   | 参数名 |  类型  |    说明    |
   | :----: | :----: | :--------: |
   |  key   | string | 0.zone key |
 
-- Response
+- 响应:
 
-  | 参数名  |  类型  |        说明         |
-  | :-----: | :----: | :-----------------: |
-  |  code   |  int   | 状态码  0成功 1失败 |
-  | message | string |      状态信息       |
-  |  data   |  list  |      返回数据       |
+  | 参数名  |  类型  |         说明         |
+  | :-----: | :----: | :------------------: |
+  |  code   |  int   | 状态码 0 成功 1 失败 |
+  | message | string |       状态信息       |
+  |  data   |  list  |       返回数据       |
 
   ```
   data 数据说明
@@ -208,13 +218,15 @@ def data():
   ]
   ```
 
+##### 2.3.2 导出 csv 文件
 
+- 请求路径 : {api_base_pat}/export
 
+- 请求方法 : POST
 
+- 请求格式: application/x-www-form-urlencoded
 
-- Method : POST #导出csv文件
-
-- Request
+- 请求体:
 
   |   参数名   |  类型  |    说明    |
   | :--------: | :----: | :--------: |
@@ -223,35 +235,39 @@ def data():
   |  company   | string |  认证公司  |
   |    key     | string | 0.zone key |
 
-- Response:
+- 响应:
 
-  | 参数名  |  类型  |        说明         |
-  | :-----: | :----: | :-----------------: |
-  |  code   |  int   | 状态码  0成功 1失败 |
-  | message | string |      状态信息       |
+  | 参数名  |  类型  |         说明         |
+  | :-----: | :----: | :------------------: |
+  |  code   |  int   | 状态码 0 成功 1 失败 |
+  | message | string |       状态信息       |
 
+##### 2.3.3 删除导出历史
 
+- 请求路径 : {api_base_pat}/export
 
-- Method : DELETE  # 删除导出历史
+- 请求方法 : DELETE
 
-- Request
+- 请求格式: application/x-www-form-urlencoded
 
-  | 参数名 |  类型  |      说明      |
-  | :----: | :----: | :------------: |
-  |  key   | string |   0.zone key   |
-  |  ids   |  list  | 导出数据id列表 |
+- 请求体
 
-- Response
+  | 参数名 |  类型  |       说明       |
+  | :----: | :----: | :--------------: |
+  |  key   | string |    0.zone key    |
+  |  ids   |  list  | 导出数据 id 列表 |
 
-  | 参数名  |  类型  |        说明         |
-  | :-----: | :----: | :-----------------: |
-  |  code   |  int   | 状态码  0成功 1失败 |
-  | message | string |      状态信息       |
-  
-### 3. 运行demo
- 
+- 响应
+
+  | 参数名  |  类型  |         说明         |
+  | :-----: | :----: | :------------------: |
+  |  code   |  int   | 状态码 0 成功 1 失败 |
+  | message | string |       状态信息       |
+
+### 3. 运行 demo
+
 1. 您也可运行此 demo 预览效果
-2. python版本: 3.6.10
+2. python 版本: 3.6.10
 3. 启动流程:
 
    ```
@@ -259,4 +275,5 @@ def data():
    pip install -r requirements.txt
    python3 demo.py
    ```
+
 4. 访问 http://127.0.0.1:5000
