@@ -5,7 +5,7 @@
 2. 启动流程:
 
    ```
-   cd zone-python-demo
+   cd zone-python-demo/python
    pip install -r requirements.txt
    python3 demo.py
    ```
