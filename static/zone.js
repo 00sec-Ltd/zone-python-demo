@@ -340,7 +340,7 @@ class Zone {
   }
 
   constructor(obj) {
-    this.api_pash = obj.api_pash;
+    this.base_api_path = obj.base_api_path;
     this.company = obj.company;
     this.conainer = obj.conainer;
     this.title_type = 'site';
@@ -535,20 +535,23 @@ class Zone {
     this.conainer.style.opacity=0.3
     $("#load").show()
     let _this = this;
+    let form = new FormData();
+    form.append("title",this.title);
+    form.append("company",this.company);
+    form.append("title_type",this.title_type);
+    form.append("page",this.page);
+    form.append("pagesize",this.pagesize);
+
+
     $.ajax({
-      url: this.api_pash + '/data',
+      url: this.base_api_path + '/data',
       type: 'POST',
-      data: {
-        title: this.title,
-        company: this.company,
-        title_type: this.title_type,
-        page: this.page,
-        pagesize: this.pagesize,
-        // key: this.appid,
-      },
-      dataType: 'json',
+      data: form,
+      dataType:'json',
       cache: true,
       async: true,
+      contentType : false,
+processData : false,
       success({ data, code, message }) {
         if (code === 0) {
           _this.setSuccess();
@@ -582,18 +585,19 @@ class Zone {
     this.conainer.style.opacity=0.3
     $("#load").show()
     let _this = this;
+    let form = new FormData();
+    form.append("title",this.title);
+    form.append("company",this.company);
+    form.append("title_type",this.title_type);
+    form.append("page",this.page);
+    form.append("pagesize",this.pagesize);
     $.ajax({
-      url: `${this.api_pash}/aggs`,
+      url: `${this.base_api_path}/aggs`,
       type: 'POST',
-      data: {
-        title: this.title,
-        company: this.company,
-        title_type: this.title_type,
-        page: this.page,
-        pagesize: this.pagesize,
-        // key: this.appid,
-      },
-      dataType: 'json',
+      data: form,
+      dataType:'json',
+      contentType : false,
+      processData : false,
       cache: true,
       async: true,
       success({ data }) {
