@@ -54,7 +54,7 @@ class Main:
 @app.route("/data", methods=["POST"])
 def data():
     # 获取数据
-    data = request.json
+    data = request.form
     request_data = dict(
         title=data.get("title", ""), # 搜索条件
         title_type=data.get("title_type", ""), # 搜索类型 目前只支持site(信息系统), domain(域名)
@@ -73,7 +73,7 @@ def data():
 @app.route("/aggs", methods=["POST"])
 def aggs():
     # 获取聚合数据
-    data = request.json
+    data = request.form
     request_data = dict(
         title=data.get("title", ""),
         title_type=data.get("title_type", ""),
@@ -90,7 +90,7 @@ def aggs():
 
 @app.route("/export", methods=["GET", "POST", "DELETE"])
 def export():
-    data = request.json
+    data = request.form
     request_data = dict(key=Config.key)
     # 获取导出历史
     if request.method == "GET":
