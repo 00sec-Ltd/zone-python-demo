@@ -4,7 +4,7 @@
 
 ```html
 <script src="https://static.0.zone/plugin-base.js"></script>
-<script src="./zoen.js"></script>
+<script src="./zone.js"></script>
 <link rel="stylesheet" type="text/css" href="./index.css" />
 ```
 
@@ -30,7 +30,7 @@ site.init()
   <head>
     <meta charset="UTF-8" />
     <script src="https://static.0.zone/plugin-base.js"></script>
-    <script src="./zoen.js"></script>
+    <script src="./zone.js"></script>
     <link rel="stylesheet" type="text/css" href="./index.css" />
     <style type="text/css">
       /* 全局样式配置 */
