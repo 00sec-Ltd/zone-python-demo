@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcss.com/lodash.js/4.17.11/lodash.min.js"></script>
+    <script src="./jquery.z-pager.js"></script>
+    <script src="./zoen.js"></script>
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+    <style type="text/css">
+      //全局样式配置
+      body {
+        --color-bg: #d33d16;
+        --color-text: #fff;
+      }
+    </style>
+  </head>
+  <body>
+   
+    <div id="app">
+     
+    </div>
+  </body>
+  <script>
+    let site = new Znen('http://192.168.1.104:8001/api/','北京零零信安科技有限公司',document.getElementById('app'));
+    site.init()
+  </script>
+</html>

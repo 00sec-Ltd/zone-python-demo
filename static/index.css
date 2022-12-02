@@ -1,0 +1,385 @@
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0 0 0 0;
+  background: #fff;
+}
+.zoen {
+  width: 100%;
+  height: 100%;
+  margin: 0 0 0 0;
+  background: #fff;
+}
+.zoen .zoen_head {
+  padding: 50px 30px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.zoen .zoen_head .zoen_head_content {
+  display: flex;
+  align-items: center;
+}
+.zoen .zoen_head .zoen_head_export {
+}
+.zoen .zoen_head .zoen_head_export .export {
+  background: var(--color-bg);
+  padding: 4px 10px;
+  font-size: 14px;
+  font-family: Source Han Sans CN-ExtraLight, Source Han Sans CN;
+  font-weight: 200;
+  color: #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.zoen .zoen_head .zoen_head_content .head_img {
+  width: 96px;
+  height: 96px;
+  background: #d7d7d7;
+  border-radius: 48px 48px 48px 48px;
+  margin-right: 16px;
+}
+.zoen .zoen_head .zoen_head_content .head_img img {
+  width: 96px;
+  height: auto;
+}
+.zoen .zoen_head .zoen_head_content .head_content {
+}
+.zoen .zoen_head .zoen_head_content .head_content .head_company {
+  font-size: 24px;
+  font-family: Source Han Sans CN-Medium, Source Han Sans CN;
+  font-weight: 500;
+  color: #272f60;
+  line-height: 24px;
+  margin-bottom: 8px;
+}
+.zoen .zoen_head .zoen_head_content .head_content .head_brief {
+  font-size: 14px;
+  font-family: Source Han Sans CN-ExtraLight, Source Han Sans CN;
+  font-weight: 200;
+  color: #979caa;
+  line-height: 20px;
+}
+.zoen .zoen_head .zoen_head_content .head_content .head_brief .tags {
+  padding: 0px 8px;
+  margin-right: 5px;
+  cursor: pointer;
+  border-radius: 14px;
+  margin-bottom: 4px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-bg);
+  color: #fff;
+  font-size: 12px;
+  /* color: rgb(127, 118, 203); */
+}
+.zoen .zoen_tab {
+  display: flex;
+  padding: 24px 30px;
+  border-bottom: 1px solid #e0d6d6;
+}
+.zoen .zoen_tab_li {
+  margin-right: 50px;
+  font-size: 14px;
+  font-family: Source Han Sans CN-Regular, Source Han Sans CN;
+  font-weight: 400;
+  color: #272f60;
+  cursor: pointer;
+}
+.zoen .zoen_tab .active {
+  margin-right: 50px;
+  font-size: 14px;
+  font-family: Source Han Sans CN-Regular, Source Han Sans CN;
+  font-weight: 400;
+  color: var(--color-bg);
+}
+.zoen .zoen_tab .active span {
+  background: var(--color-bg);
+  font-size: 10px;
+  font-family: Source Han Sans CN-ExtraLight, Source Han Sans CN;
+  font-weight: 200;
+  color: #ffffff;
+  padding: 0px 10px;
+  border-radius: 10px;
+}
+.zoen .zoen_tab_li span {
+  background: #fff;
+  font-size: 10px;
+  font-family: Source Han Sans CN-ExtraLight, Source Han Sans CN;
+  font-weight: 200;
+  color: #ffffff;
+  padding: 0px 10px;
+  border-radius: 10px;
+  color: #272f60;
+}
+.zoen .zoen_screen {
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.zoen .zoen_screen .zoen_screen_input {
+  display: flex;
+  width: 90%;
+  position: relative;
+}
+.zoen .zoen_screen .zoen_screen_input input {
+  /* width: 1596px; */
+  width: 100%;
+  height: 35px;
+  background: #fff9f8;
+  border-radius: 60px 60px 60px 60px;
+  border: 1px solid var(--color-bg);
+  padding: 0 16px;
+}
+.zoen .zoen_screen .zoen_screen_input input::-webkit-input-placeholder {
+  font-size: 14px;
+  font-family: Source Han Sans CN-Regular, Source Han Sans CN;
+  font-weight: 400;
+  color: var(--color-bg);
+}
+.zoen .zoen_screen .zoen_screen_input span {
+  width: 92px;
+  height: 35px;
+  background: var(--color-bg);
+  border-radius: 317px 317px 317px 317px;
+  border: 1px solid var(--color-bg);
+  line-height: 35px;
+  display: inline-block;
+  text-align: center;
+  position: absolute;
+  right: 0px;
+  top: 1px;
+  font-size: 14px;
+  font-family: Source Han Sans CN-Medium, Source Han Sans CN;
+  font-weight: 500;
+  cursor: pointer;
+  color: #ffffff;
+}
+.zoen .zoen_screen .zoen_screen_config {
+  width: 10%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+}
+.zoen .zoen_screen .zoen_screen_config .tableList {
+  position: absolute;
+  background: #ffffff;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.302);
+  border-radius: 6px 6px 6px 6px;
+  border: 1px solid #9e9e9e;
+  min-width: 900px;
+  /* height: 200px; */
+  padding: 50px;
+  top: 36px;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 1000;
+}
+.zoen .zoen_screen .zoen_screen_config .tableList .checkbox {
+  width: 150px;
+  margin-bottom: 10px;
+}
+.zoen .zoen_screen .zoen_screen_config .config {
+  width: 80px;
+  height: 30px;
+  background: #fff;
+  border-radius: 4px 4px 4px 4px;
+  opacity: 1;
+  border: 1px solid var(--color-bg);
+  font-size: 14px;
+  font-family: Source Han Sans CN-Medium, Source Han Sans CN;
+  font-weight: 500;
+  color: var(--color-bg);
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+.zoen .zoen_form table {
+  border-right: 1px solid #d8d8d8;
+  border-bottom: 1px solid #d8d8d8;
+  text-align: center;
+  width: 100%;
+}
+
+.zoen .zoen_form table th {
+  border-left: 1px solid #d8d8d8;
+  border-top: 1px solid #d8d8d8;
+}
+
+.zoen .zoen_form table td {
+  border-left: 1px solid #d8d8d8;
+  border-top: 1px solid #d8d8d8;
+}
+.zoen .zoen_form table th {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-family: Source Han Sans CN-Medium, Source Han Sans CN;
+  font-weight: 500;
+  color: #272f60;
+  min-width: 150px;
+  position: relative;
+}
+.aggsinput {
+  position: absolute;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 6px 6px 6px 6px;
+  border: 1px solid #e3e3e3;
+  /* top: 29px;
+  right: -42px; */
+  z-index: 1000;
+  /* max-width: 30px; */
+}
+.aggsinput .list {
+  min-width: 100px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-family: Source Han Sans CN-Medium, Source Han Sans CN;
+  font-weight: 500;
+  color: #3d3d3d;
+}
+.zoen .zoen_form table th .screen {
+  /* cursor: default; */
+  background-image: url(./images/screen.png);
+  background-size: 10px 10px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-left: 12px;
+}
+.zoen .zoen_form table td {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-family: Source Han Sans CN-Regular, Source Han Sans CN;
+  font-weight: 400;
+  color: #272f60;
+  max-width: 150px;
+  overflow: scroll;
+}
+.zoen .zoen_form {
+  width: 100%;
+  overflow-x: scroll;
+}
+.page_div {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  font-family: 'microsoft yahei';
+  color: #666666;
+  margin-right: 10px;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+/*
+ * 页数按钮样式
+ */
+
+.page_div a {
+  min-width: 30px;
+  height: 28px;
+  border: 1px solid #dce0e0 !important;
+  text-align: center;
+  margin: 0 4px;
+  cursor: pointer;
+  line-height: 28px;
+  color: #666666;
+  font-size: 13px;
+  display: inline-block;
+}
+
+#firstPage,
+#lastPage {
+  width: 50px;
+  color: var(--color-bg);
+  border: 1px solid var(--color-bg) !important;
+}
+
+#prePage,
+#nextPage {
+  width: 70px;
+  color: var(--color-bg);
+  border: 1px solid var(--color-bg) !important;
+}
+
+.page_div .current {
+  background-color: var(--color-bg);
+  border-color: var(--color-bg);
+  color: #ffffff;
+}
+
+.totalPages {
+  margin: 0 10px;
+}
+
+.totalPages span,
+.totalSize span {
+  color: var(--color-bg);
+  margin: 0 5px;
+}
+.abnormal {
+  width: 239px;
+  margin: 50px auto;
+}
+.abnormal h4 {
+  margin-bottom: 0;
+  font-size: 29px;
+  color: #272f60;
+}
+.abnormal h5 {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #272f60;
+}
+
+.load {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+}
+.load hr {
+  border: 0;
+  margin: 0;
+  width: 20%;
+  height: 20%;
+  position: absolute;
+  border-radius: 50%;
+  animation: spin 2s ease infinite;
+}
+
+.load :first-child {
+  background: #19a68c;
+  animation-delay: -1.5s;
+}
+.load :nth-child(2) {
+  background: #f63d3a;
+  animation-delay: -1s;
+}
+.load :nth-child(3) {
+  background: #fda543;
+  animation-delay: -0.5s;
+}
+.load :last-child {
+  background: #193b48;
+}
+
+@keyframes spin {
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  25% {
+    transform: translate(160%);
+  }
+  50% {
+    transform: translate(160%, 160%);
+  }
+  75% {
+    transform: translate(0, 160%);
+  }
+}
