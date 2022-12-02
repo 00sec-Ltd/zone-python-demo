@@ -12,11 +12,11 @@
 
 ```js
 let site = new Zone({
-      api_pash:'http://192.168.1.104:8001/api',
+      api_pash:'/api',
       company:'北京零零信安科技有限公司',
       conainer:document.getElementById('app')
 });
-// api_pash URL
+// api_pash 后台URL地址
 // company 认证公司
 // conainer 是需要载入内容的dom容器
 site.init()
@@ -48,7 +48,7 @@ site.init()
   </body>
   <script>
     let site = new Zone({
-      api_pash:'http://192.168.1.104:8001/api',
+      api_pash:'/api',
       company:'北京零零信安科技有限公司',
       conainer:document.getElementById('app')
     });
