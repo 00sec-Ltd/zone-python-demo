@@ -17,7 +17,6 @@ function isLeaglBrackets(string) {
   }
   return array.length === 0;
 }
-
 function getGroups(key) {
   let tmp = '';
   const groups = [];
@@ -68,7 +67,6 @@ function transformTimestamp(timestamp) {
   const dateString = Y + M + D + h + m;
   return dateString;
 }
-
 const siteList = [
   {
     name: 'URL',
@@ -333,7 +331,7 @@ const domainList = [
     },
   },
 ];
-class Znen {
+class Zone {
   // eslint-disable-next-line class-methods-use-this
   stringToHTML(str) {
     const dom = document.createElement('div');
@@ -341,15 +339,15 @@ class Znen {
     return dom;
   }
 
-  constructor(api_pash, company, conainer) {
-    this.api_pash = api_pash;
-    this.company = company;
-    this.conainer = conainer;
+  constructor(obj) {
+    this.api_pash = obj.api_pash;
+    this.company = obj.company;
+    this.conainer = obj.conainer;
     this.title_type = 'site';
     this.configShow = true;
     this.page = 1;
     this.pagesize = 10;
-    this.title = company;
+    this.title = obj.company;
     this.tags = 'site';
     this.Html = `
     <div class="zoen">
