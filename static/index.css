@@ -22,6 +22,8 @@ body {
   align-items: center;
 }
 .zoen .zoen_head .zoen_head_export {
+  display: flex;
+  align-items: center;
 }
 .zoen .zoen_head .zoen_head_export .export {
   background: var(--color-bg);
@@ -31,6 +33,12 @@ body {
   font-weight: 200;
   color: #ffffff;
   border-radius: 5px;
+  cursor: pointer;
+}
+.zoen .zoen_head .zoen_head_export .export_list {
+  color: var(--color-bg);
+  font-size: 12px;
+  margin-right: 10px;
   cursor: pointer;
 }
 .zoen .zoen_head .zoen_head_content .head_img {
@@ -226,10 +234,7 @@ body {
   background: #ffffff;
   border-radius: 6px 6px 6px 6px;
   border: 1px solid #e3e3e3;
-  /* top: 29px;
-  right: -42px; */
   z-index: 1000;
-  /* max-width: 30px; */
 }
 .aggsinput .list {
   min-width: 100px;
@@ -257,7 +262,9 @@ body {
   font-weight: 400;
   color: #272f60;
   max-width: 150px;
-  overflow: scroll;
+  height: auto;
+  word-break: break-all;
+  text-align: justify;
 }
 .zoen .zoen_form {
   width: 100%;
@@ -267,7 +274,7 @@ body {
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 15px;
-  font-family: 'microsoft yahei';
+  font-family: "microsoft yahei";
   color: #666666;
   margin-right: 10px;
   padding-left: 20px;
@@ -320,18 +327,24 @@ body {
   margin: 0 5px;
 }
 .abnormal {
-  width: 239px;
+  width: 500px;
   margin: 50px auto;
 }
 .abnormal h4 {
+  /* text-align: center; */
   margin-bottom: 0;
-  font-size: 29px;
-  color: #272f60;
+  font-size: 36px;
+  font-family: Source Han Sans CN-Regular, Source Han Sans CN;
+  font-weight: 400;
+  color: #3d3d3d;
 }
 .abnormal h5 {
+  /* text-align: center; */
   margin: 10px 0;
   font-size: 14px;
-  color: #272f60;
+  font-family: Source Han Sans CN-Regular, Source Han Sans CN;
+  font-weight: 400;
+  color: #3d3d3d;
 }
 
 .load {
@@ -382,4 +395,70 @@ body {
   75% {
     transform: translate(0, 160%);
   }
+}
+.zoen-Modal {
+  /* display: none; */
+  width: 700px;
+  background: rgb(234, 232, 232);
+  min-height: 300px;
+  z-index: 1000;
+  position: absolute;
+  top: 20%;
+  left: 25%;
+  padding: 20px;
+}
+.zoen-Modal h3 {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: Source Han Sans CN-Regular, Source Han Sans CN;
+  color: #3d3d3d;
+  cursor: pointer;
+  margin: 0;
+  margin-bottom: 10px;
+}
+.zoen-Modal .list {
+}
+.zoen-Modal .list .li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 5px;
+  font-family: Source Han Sans CN-Regular, Source Han Sans CN;
+  font-weight: 400;
+  color: #000000;
+  font-size: 12px;
+  background: #f4f4f4;
+  border-radius: 2px 2px 2px 2px;
+}
+.zoen-Modal .list .li .state {
+  font-family: Source Han Sans CN-Regular, Source Han Sans CN;
+  font-weight: 400;
+  color: #000000;
+  font-size: 12px;
+}
+.zoen-Modal .list .li .name {
+  font-family: Source Han Sans CN-Regular, Source Han Sans CN;
+  font-weight: 400;
+  color: #000000;
+  font-size: 12px;
+}
+.zoen-Modal .list .li .time {
+  font-family: Source Han Sans CN-Regular, Source Han Sans CN;
+  font-weight: 400;
+  color: #000000;
+  font-size: 12px;
+}
+.zoen-Modal .list .li .operation {
+  width: 61px;
+  display: flex;
+  justify-content: space-between;
+}
+.zoen-Modal .list .li .operation a {
+  font-size: 12px;
+  font-family: Source Han Sans CN-Regular, Source Han Sans CN;
+  font-weight: 400;
+  color: #d33d16;
+  cursor: pointer;
 }
