@@ -57,7 +57,7 @@ def data():
     data = request.form
     request_data = dict(
         title=data.get("title", ""), # 搜索条件
-        title_type=data.get("title_type", ""), # 搜索类型 目前只支持site(信息系统), domain(域名)
+        title_type=data.get("title_type", ""), # 搜索类型 目前只支持site(信息系统), domain(域名), apk(移动端应用)
         company=data.get("company", ""), # 认证公司
         page=data.get("page", 1), # 页数
         pagesize=data.get("pagesize", 10), # 页大小
@@ -114,7 +114,7 @@ def export():
 
     # 删除导出历史
     elif request.method == "DELETE":
-        request_data.update(ids=data.get("ids", ""))  # ids list
+        request_data.update(ids=data.getlist("ids"))  # ids list
         try:
             data = Main().getExportData(request_data, request_type=2)
         except:
