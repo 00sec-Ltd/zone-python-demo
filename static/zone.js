@@ -345,14 +345,88 @@ const domainList = [
     },
   },
 ];
+const apkList = [
+  {
+    name: "应用名称",
+    value: "_source.title",
+    checked: true,
+    create(value) {
+      return value;
+    },
+  },
+  {
+    name: "应用描述",
+    value: "_source.description",
+    checked: true,
+    create(value) {
+      return value;
+    },
+  },
+  {
+    name: "集团公司",
+    value: "_source.source",
+    checked: true,
+    create(value) {
+      return value;
+    },
+    type: "group",
+    aggs: [],
+    aggstype: "a_group",
+  },
+  {
+    name: "类型",
+    value: "_source.type",
+    checked: true,
+    create(value) {
+      return value;
+    },
+    type: "type",
+    aggs: [],
+    aggstype: "a_type",
+  },
+  {
+    name: "来源",
+    value: "_source.source",
+    checked: true,
+    create(value) {
+      return value;
+    },
+    type: "source",
+    aggs: [],
+    aggstype: "a_source",
+  },
+  {
+    name: "公众号id",
+    value: "_source.msg.wechat_id",
+    checked: true,
+    create(value) {
+      return value;
+    },
+  },
+  // {
+  //   name: "截图列表",
+  //   value: "_source.title",
+  //   checked: true,
+  //   create(value) {
+  //     return value;
+  //   },
+  // },
+];
 class Zone {
   // eslint-disable-next-line class-methods-use-this
   stringToHTML(str) {
     const dom = document.createElement("div");
     dom.innerHTML = str;
+    dom.className = "zone_active";
     return dom;
   }
 
+  ModalToHTML() {
+    const dom = document.createElement("div");
+    // dom.innerHTML = str;
+    dom.className = "zoen-Modal";
+    return dom;
+  }
   constructor(obj) {
     this.base_api_path = obj.base_api_path;
     this.company = obj.company;
@@ -374,7 +448,8 @@ class Zone {
             </div>
           </div>
           <div class="zoen_head_export">
-            <div class="export">导出报告</div>
+          <div class="export_list" id="export_list">导出列表</div>
+          <div class="export" id="export">导出报告</div>
           </div>
         </div>
         <div class="zoen_tab" id="zoen_tab">
@@ -385,6 +460,10 @@ class Zone {
                 <div class="zoen_tab_li" id="zoen_tab_li" value="domain">
                         域名
                         <span id="domain">60</span>
+                </div>
+                <div class="zoen_tab_li" id="zoen_tab_li" value="apk">
+                移动应用
+                        <span id="apk">0</span>
                 </div>
 
         </div>
@@ -434,7 +513,9 @@ class Zone {
     this.label = {
       domain: 0,
       site: 0,
+      apk:0
     };
+    this.exportList = [];
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -503,13 +584,14 @@ class Zone {
     const compiledTags = _.template(
       '<% _.forEach(users, function(user) { %><span class="tags"><%- user %></span><% })%>'
     );
-
-    $("#head_img").html(this.stringToHTML(`<img src="${this.logo}"/>`));
+    const img = _.template('<img src="<%- value %>"/>');
+    $("#head_img").html(img({ value: this.logo }));
     $("#head_company").html(this.company_name);
-
     $("#head_brief").html(compiledTags({ users: this.company_tags }));
     $("#domain").html(this.label.domain);
     $("#site").html(this.label.site);
+    $("#apk").html(this.label.apk);
+
     this.setListTable();
   }
 
@@ -699,6 +781,96 @@ class Zone {
     });
   }
 
+  ajaxexport() {
+    this.conainer.style.opacity = 0.3;
+    $("#load").show();
+    let _this = this;
+    let form = new FormData();
+    form.append("title", this.title);
+    form.append("company", this.company);
+    form.append("title_type", this.title_type);
+    form.append("page", this.page);
+    form.append("pagesize", this.pagesize);
+    $.ajax({
+      url: `${this.base_api_path}/export`,
+      type: "POST",
+      data: form,
+      dataType: "json",
+      contentType: false,
+      processData: false,
+      cache: true,
+      async: true,
+      success({ code }) {
+        _this.conainer.style.opacity = 1;
+        $("#load").hide();
+      },
+      error() {
+        _this.conainer.style.opacity = 1;
+        $("#load").hide();
+      },
+    });
+  }
+
+  ajaxdeleteExport(id){
+    let form = new FormData();
+    // form.append("ids", JSON.stringify([id]));
+    form.append("ids", id);
+
+    console.log(form)
+    let _this = this;
+    $.ajax({
+      url: `${this.base_api_path}/export`,
+      type: "DELETE",
+      data:form,
+      dataType: "json",
+      contentType: false,
+      processData: false,
+      cache: true,
+      async: true,
+      success({ code }) {
+        if(code===0){
+          _this.ajaxexportList()
+        }
+      },
+    });
+  }
+  
+  ajaxexportList() {
+    // this.conainer.style.opacity = 0.3;
+    // $("#load").show();
+    
+    let _this = this;
+    $.ajax({
+      url: `${this.base_api_path}/export`,
+      type: "GET",
+      dataType: "json",
+      contentType: false,
+      processData: false,
+      cache: true,
+      async: true,
+      success({ data }) {
+        // _this.exportList = data;
+        const Modal = _.template(
+          '<div><h3><span>导出列表</span><span id="Modal_close">关闭</span></h3></div><div class="list"><% _.forEach(users, function(user) { %>  <div class="li"><div class="state"><%- user.status==0?"成功":"失败" %></div><div class="name"><%- user.filename %></div><div class="time"><%- user.date_time %></div><div class="operation"><a href="<%- user.down_url %>" target="blank" rel="noreferrer">下载</a><a id="delete_export" value="<%- user.id %>"><span value="<%- user.id %>">删除</span></a></div> </div><% })%></div>'
+        );
+        $(".zoen-Modal").html(
+          Modal({
+            users: data,
+          })
+        );
+        $('#Modal_close').click(()=>{
+          $(".zoen-Modal").remove();;
+          $(".zone_active").css("opacity", 1);
+        })
+        $(".zoen-Modal").on("click","#delete_export", function (event) {
+          _this.ajaxdeleteExport($(this).attr("value"))
+        })
+       
+      },
+    });
+  }
+
+ 
   init() {
     this.create();
     this.ajaxAggs();
@@ -722,6 +894,8 @@ class Zone {
     $("#zoen_tab").on("click", "div", function () {
       if ($(this).attr("value") === "domain") {
         _this.tableList = domainList;
+      }else if($(this).attr("value") === "apk"){
+        _this.tableList = apkList;
       } else {
         _this.tableList = siteList;
       }
@@ -751,5 +925,15 @@ class Zone {
         $("#tableList").hide();
       }
     );
+
+    $("#export").click(() => {
+      _this.ajaxexport();
+    });
+    $("#export_list").click(() => {
+      $("#zoen-Modal").show();
+      $(".zone_active").css("opacity", 0.3);
+      _this.conainer.appendChild(_this.ModalToHTML());
+      _this.ajaxexportList()
+    });
   }
 }
