@@ -412,6 +412,140 @@ const apkList = [
   //   },
   // },
 ];
+const emailList = [
+  {
+    name: "邮箱地址",
+    value: "email",
+    checked: true,
+    create(value) {
+      return value;
+    },
+  },
+  {
+    name: "泄露次数",
+    value: "leakage_num",
+    checked: true,
+    create(value) {
+      return value;
+    },
+    type: "leakage_num",
+    aggs: [],
+    aggstype: "e_leakage_num",
+  },
+  {
+    name: "泄露平台",
+    value: "source",
+    checked: true,
+    create(value) {
+      return value;
+    },
+    type: "source",
+    aggs: [],
+    aggstype: "e_source",
+  },
+  {
+    name: "邮箱后缀",
+    value: "type",
+    checked: true,
+    create(value) {
+      return value;
+    },
+    type: "domain",
+    aggs: [],
+    aggstype: "e_domain",
+  },
+  {
+    name: "邮箱类型",
+    value: "email_type",
+    checked: true,
+    create(value) {
+      return value;
+    },
+    type: "type",
+    aggs: [],
+    aggstype: "e_type",
+  },
+];
+
+const codeList = [
+  {
+    name: "作者名称",
+    value: "_source.owner.login",
+    checked: true,
+    create(value) {
+      return value;
+    },
+  },
+  {
+    name: "标签",
+    value: "_source.tags",
+    checked: true,
+    create(value) {
+      return value;
+    },
+    type: "tags",
+    aggs: [],
+    aggstype: "tags",
+    //tags
+  },
+  {
+    name: "文件后缀",
+    value: "_source.file_extension",
+    checked: true,
+    create(value) {
+      return value;
+    },
+    type: "suffix",
+    aggs: [],
+    aggstype: "suffix",
+  },
+  {
+    name: "来源",
+    value: "_source.source",
+    checked: true,
+    create(value) {
+      return value;
+    },
+    type: "service",
+    aggs: [],
+    aggstype: "service",
+  },
+  {
+    name: "时间",
+    value: "_source.timestamp",
+    checked: true,
+    create(value) {
+      return transformTimestamp(value);
+    },
+  },
+  {
+    name: "类型",
+    value: "_source.type",
+    checked: true,
+    create(value) {
+      return value;
+    },
+    type: "type",
+    aggs: [],
+    aggstype: "type",
+  },
+  // {
+  //   name: "内容",
+  //   value: "_source.code_detail",
+  //   checked: true,
+  //   create(value) {
+  //     return value;
+  //   },
+  // },
+  {
+    name: "代码地址",
+    value: "_source.url",
+    checked: true,
+    create(value) {
+      return value;
+    },
+  },
+];
 class Zone {
   // eslint-disable-next-line class-methods-use-this
   stringToHTML(str) {
@@ -465,6 +599,15 @@ class Zone {
                 移动应用
                         <span id="apk">0</span>
                 </div>
+                <div class="zoen_tab_li" id="zoen_tab_li" value="code">
+                代码/文档
+                        <span id="code">0</span>
+                </div>
+                <div class="zoen_tab_li" id="zoen_tab_li" value="email">
+                邮箱
+                        <span id="email">0</span>
+                </div>
+                
 
         </div>
         <div class="zoen_screen">
@@ -513,7 +656,10 @@ class Zone {
     this.label = {
       domain: 0,
       site: 0,
-      apk:0
+      apk:0,
+      email:0,
+      code:0,
+
     };
     this.exportList = [];
   }
@@ -591,6 +737,10 @@ class Zone {
     $("#domain").html(this.label.domain);
     $("#site").html(this.label.site);
     $("#apk").html(this.label.apk);
+    $("#code").html(this.label.code);
+    $("#email").html(this.label.email);
+
+
 
     this.setListTable();
   }
@@ -701,12 +851,12 @@ class Zone {
       cache: true,
       async: true,
       success({ data }) {
-        _this.conainer.style.opacity = 1;
+        // _this.conainer.style.opacity = 1;
         _this.tableList = _this.tableList.map((item) => ({
           ...item,
           aggs: _.get(data, "aggs", {})[item.aggstype] || [],
         }));
-        $("#load").hide();
+        // $("#load").hide();
       },
       error() {
         _this.conainer.style.opacity = 1;
@@ -896,6 +1046,10 @@ class Zone {
         _this.tableList = domainList;
       }else if($(this).attr("value") === "apk"){
         _this.tableList = apkList;
+      }else if($(this).attr("value") === "code"){
+        _this.tableList = codeList;
+      }else if($(this).attr("value") === "email"){
+        _this.tableList = emailList;
       } else {
         _this.tableList = siteList;
       }
