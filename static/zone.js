@@ -434,18 +434,22 @@ const emailList = [
   },
   {
     name: "泄露平台",
-    value: "source",
+    value: "leakage_account",
     checked: true,
     create(value) {
-      return value;
+      let _Html = "";
+      value.forEach((element) => {
+        _Html += `${element.Domain || ""}-`;
+      });
+      return _Html;
     },
-    type: "source",
-    aggs: [],
-    aggstype: "e_source",
+    // type: "source",
+    // aggs: [],
+    // aggstype: "e_source",
   },
   {
     name: "邮箱后缀",
-    value: "type",
+    value: "domain",
     checked: true,
     create(value) {
       return value;
@@ -464,6 +468,17 @@ const emailList = [
     type: "type",
     aggs: [],
     aggstype: "e_type",
+  },
+  {
+    name: "来源",
+    value: "source",
+    checked: true,
+    create(value) {
+      return value;
+    },
+    type: "source",
+    aggs: [],
+    aggstype: "e_source",
   },
 ];
 
